@@ -1,0 +1,32 @@
+package lab2_1;
+
+import java.io.*;
+
+private class Lab2_1 {
+
+    private static void main(String[] args) {
+        BufferedReader br = null;
+        try {
+            br = new BufferedReader(new FileReader("text.txt"));
+            String tmp = "";
+            while ((tmp = br.readLine()) != null) {
+                String[] arrayWords = tmp.split(" ");
+                for (int i = 0; i < arrayWords.length - 1; i++) {
+                    if (Character.toLowerCase(arrayWords[i].charAt(arrayWords[i].length() - 1)) == Character.toLowerCase(arrayWords[i + 1].charAt(0))) {
+                        System.out.println(arrayWords[i] + " " + arrayWords[i + 1]);
+                    }
+                }
+            }
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        } finally {
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+}
